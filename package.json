@@ -1,0 +1,29 @@
+{
+  "name": "reunion-2019",
+  "version": "1.0.0",
+  "description": "Class Reunion Website",
+  "main": "index.js",
+  "scripts": {
+    "test": "codeceptjs run --steps",
+    "build": "npm --prefix ui-web run build",
+    "preinstall": "npm --prefix ui-web install",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tysonmcnulty/reunion-2019.git"
+  },
+  "author": "Tyson McNulty",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tysonmcnulty/reunion-2019/issues"
+  },
+  "homepage": "https://github.com/tysonmcnulty/reunion-2019#readme",
+  "devDependencies": {
+    "codeceptjs": "^2.0.6",
+    "puppeteer": "^1.12.2"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
