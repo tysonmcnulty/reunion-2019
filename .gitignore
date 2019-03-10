@@ -1,5 +1,10 @@
 # Project
 node_modules
 
+# Application
+/package
+reunion-2019*.tgz
+/*.zip
+
 # Testing
 /acceptance/output

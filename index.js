@@ -8,7 +8,7 @@ server.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "ui-web", "build", "index.html"));
 });
 
-const port = process.env.port || 2004;
+const port = process.env["PORT"] || 2004;
 
 server.listen(port, () => {
   console.log(`🐝 Server is listening on port ${port}`);
