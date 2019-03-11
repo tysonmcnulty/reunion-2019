@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "archive": "scripts/archive.sh",
-    "test": "codeceptjs run --steps",
     "build": "npm --prefix ui-web run build",
+    "deploy": "npm run archive && scripts/deploy.sh",
     "preinstall": "npm --prefix ui-web install",
+    "test": "codeceptjs run --steps",
     "start": "node index.js"
   },
   "repository": {
@@ -25,6 +26,9 @@
     "puppeteer": "^1.12.2"
   },
   "dependencies": {
+    "braintree": "^2.15.0",
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4"
   }
 }
