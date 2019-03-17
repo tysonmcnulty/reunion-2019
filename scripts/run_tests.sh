@@ -3,6 +3,9 @@ set -eu
 
 export PORT=9999
 
+echo "Building app..."
+npm run build &>/dev/null
+
 APP_PID=""
 npm -s start &>/dev/null &
 
@@ -15,7 +18,9 @@ APP_PID=$(lsof -ti :${PORT})
 echo "App PID: ${APP_PID}"
 echo "Running tests..."
 
+set +e
 TEST_PORT=${PORT} npm -s test
+set -e
 
 echo "Stopping app..."
 kill $APP_PID
