@@ -10,12 +10,21 @@
   width: 90%;
 }
 
+.options {
+  display: flex;
+}
+
+.options > * {
+  flex: 1;
+  width: 90%;
+}
+
 .form-field {
   display: flex;
   padding: 4px;
 }
 
-label {
+.form-field label {
   text-align: right;
 }
 
