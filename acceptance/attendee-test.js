@@ -13,6 +13,10 @@ Scenario("Single attendee", I => {
   I.click("REGISTER NOW");
   I.waitForElement("#registration-form");
   within("#registration-form", () => {
+    I.fillField("First Name", "Tyson");
+    I.fillField("Last Name", "McNulty");
+    I.fillField("Email", "cool-email@example.com");
+
     I.see("$125");
     I.waitForElement("#paypal-button");
   });

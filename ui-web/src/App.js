@@ -18,10 +18,12 @@ class App extends Component {
         <header className="App-header">
           <h1>Class of 2004 15th Reunion</h1>
           <h2>October 4-6, 2019</h2>
+        </header>
+        <div>
           <button className="button" onClick={this.handleRegisterNow}>
             REGISTER NOW
           </button>
-        </header>
+        </div>
         {this.state.registering && <RegistrationForm />}
       </div>
     );

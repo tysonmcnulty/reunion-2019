@@ -3,7 +3,7 @@
 }
 
 .App-header {
-  height: 50vh;
+  height: 30vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,13 +15,16 @@
   background-size: cover;
   background-blend-mode: screen;
   background-color: #282c34;
-  text-shadow: 0 0 8px black;
+  text-shadow: 0 0 16px black;
   border-bottom: 2px white solid;
+}
+
+.App-header h2 {
 }
 
 .button {
   padding: calc(4px + 2vmin);
-  margin: 4px;
+  margin: 10px;
   font-size: calc(8px + 2vmin);
   transition-duration: 0.2s;
   background-color: #50535a;

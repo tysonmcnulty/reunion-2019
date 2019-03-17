@@ -7,7 +7,7 @@ echo "Building app..."
 npm run build &>/dev/null
 
 APP_PID=""
-npm -s start &>/dev/null &
+npm start &>/dev/null &
 
 while [[ -z $(lsof -ti :${PORT}) ]]; do
   echo "Waiting for app to start..."
