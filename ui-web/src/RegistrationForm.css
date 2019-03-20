@@ -12,11 +12,12 @@
 
 .options {
   display: flex;
+  align-items: flex-start;
 }
 
 .options > * {
-  flex: 1;
-  width: 90%;
+  flex: 1 1 100%;
+  margin: auto;
 }
 
 .form-field {
@@ -26,6 +27,30 @@
 
 .form-field label {
   text-align: right;
+}
+
+@media all and (max-width: 600px) {
+  .navigation {
+    /* On small screens, we are no longer using row direction but column */
+    flex-direction: column;
+  }
+
+  .form-field {
+    flex-direction: column;
+  }
+
+  .form-field label {
+    text-align: center;
+  }
+
+  .form-field input {
+    width: 50%;
+    margin: auto;
+  }
+
+  .options {
+    flex-direction: column;
+  }
 }
 
 .form-field > * {
