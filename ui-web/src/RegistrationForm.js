@@ -10,15 +10,21 @@ const kebabify = text => {
     .join("-");
 };
 
+const priceForOption = {
+  individual: "125.00",
+  pair: "225.00",
+  couple: "225.00"
+};
+
 class RegistrationForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      registrationOption: ""
+      option: ""
     };
   }
 
-  renderFormField = ({ labelText }) => (
+  renderField = ({ labelText }) => (
     <div className="form-field">
       <label htmlFor={kebabify(labelText)}>{labelText}</label>
       <input id={kebabify(labelText)} />
@@ -26,46 +32,83 @@ class RegistrationForm extends React.Component {
     </div>
   );
 
-  renderRegistrationOptions = () => (
+  renderInformation = () => {
+    const Field = this.renderField;
+
+    switch (this.state.option) {
+      case "individual":
+        return (
+          <>
+            <h3>My Information</h3>
+            <div>
+              <Field labelText="First Name" />
+              <Field labelText="Last Name" />
+              <Field labelText="Email" />
+              <Field labelText="T-Shirt Size" />
+            </div>
+          </>
+        );
+      case "pair":
+      case "couple":
+        return (
+          <>
+            <h3>My Information</h3>
+            <div id="attendee-1">
+              <Field labelText="First Name" />
+              <Field labelText="Last Name" />
+              <Field labelText="Email" />
+              <Field labelText="T-Shirt Size" />
+            </div>
+            <h3>My Guest's Information</h3>
+            <div id="attendee-2">
+              <Field labelText="First Name" />
+              <Field labelText="Last Name" />
+              <Field labelText="Email" />
+              <Field labelText="T-Shirt Size" />
+            </div>
+          </>
+        );
+    }
+  };
+
+  renderOptions = () => (
     <RadioGroup
       id="registration-options"
-      className="options"
-      selectedValue={this.state.registrationOption}
+      selectedValue={this.state.option}
       onChange={value => {
-        this.setState({ registrationOption: value });
+        this.setState({ option: value });
       }}
     >
-      <label>
-        <Radio value="individual" />
-        Just me
-      </label>
-      <label>
-        <Radio value="pair" />
-        Me and another alum
-      </label>
-      <label>
-        <Radio value="couple" />
-        Me and a plus-one
-      </label>
+      <div className="option-group">
+        <label className="option">
+          <Radio value="individual" />
+          Just me
+        </label>
+        <label className="option">
+          <Radio value="pair" />
+          Me and another alum
+        </label>
+        <label className="option">
+          <Radio value="couple" />
+          Me and a plus-one
+        </label>
+      </div>
     </RadioGroup>
   );
 
   render() {
-    const FormField = this.renderFormField;
-    const RegistrationOptions = this.renderRegistrationOptions;
+    const Options = this.renderOptions;
+    const Information = this.renderInformation;
 
     return (
       <div className="form" id="registration-form">
         <h3>Who's registering?</h3>
-        <RegistrationOptions />
-        {this.state.registrationOption && (
+        <Options />
+        {this.state.option && (
           <>
-            <h3>My Information</h3>
-            <FormField labelText="First Name" />
-            <FormField labelText="Last Name" />
-            <FormField labelText="Email" />
-            <h3>Price: $125.00</h3>
-            <PaypalButton id="paypal-button" amount="125.00" />
+            <Information />
+            <h3>Price: ${priceForOption[this.state.option]}</h3>
+            <PaypalButton id="paypal-button" amount={this.state.option} />
           </>
         )}
       </div>
