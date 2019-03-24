@@ -1,12 +1,9 @@
 const express = require("express");
 const braintree = require("braintree");
-const cors = require("cors");
 
 const app = express();
 
 app.use(express.json());
-
-app.use(cors());
 
 const gateway = braintree.connect({
   accessToken: process.env["BRAINTREE_ACCESS_TOKEN"]
@@ -48,11 +45,11 @@ app.post("/checkout", function(req, res) {
       res.send({ status: "transaction error", error });
     } else if (result.success) {
       res.send({
-        status: "transaction success",
+        status: "transaction successful",
         transaction: result.transaction
       });
     } else {
-      res.send({ status: "unknown error", result });
+      res.send({ status: "transaction unsuccessful", result });
     }
   });
 });

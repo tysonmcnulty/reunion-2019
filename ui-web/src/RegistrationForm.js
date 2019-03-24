@@ -101,19 +101,18 @@ class RegistrationForm extends React.Component {
   render() {
     const Options = this.renderOptions;
     const AttendeeInformation = this.renderAttendeeInformation;
+    const option = this.state.option;
+    const price = priceForOption[option];
 
     return (
       <div className="form" id="registration-form">
         <h3>Who's registering?</h3>
         <Options />
-        {this.state.option && (
+        {option && (
           <>
             <AttendeeInformation />
-            <h3>Price: ${priceForOption[this.state.option]}</h3>
-            <PaypalButton
-              id="paypal-button"
-              amount={priceForOption[this.state.option]}
-            />
+            <h3>Price: ${price}</h3>
+            <PaypalButton id="paypal-button" amount={price} />
           </>
         )}
       </div>
