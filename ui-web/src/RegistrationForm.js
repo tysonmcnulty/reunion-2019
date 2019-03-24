@@ -32,7 +32,7 @@ class RegistrationForm extends React.Component {
     </div>
   );
 
-  renderInformation = () => {
+  renderAttendeeInformation = () => {
     const Field = this.renderField;
 
     switch (this.state.option) {
@@ -68,6 +68,8 @@ class RegistrationForm extends React.Component {
             </div>
           </>
         );
+      default:
+        return <></>;
     }
   };
 
@@ -90,7 +92,7 @@ class RegistrationForm extends React.Component {
         </label>
         <label className="option">
           <Radio value="couple" />
-          Me and a plus-one
+          Me and a plus-one (non-alum)
         </label>
       </div>
     </RadioGroup>
@@ -98,7 +100,7 @@ class RegistrationForm extends React.Component {
 
   render() {
     const Options = this.renderOptions;
-    const Information = this.renderInformation;
+    const AttendeeInformation = this.renderAttendeeInformation;
 
     return (
       <div className="form" id="registration-form">
@@ -106,9 +108,12 @@ class RegistrationForm extends React.Component {
         <Options />
         {this.state.option && (
           <>
-            <Information />
+            <AttendeeInformation />
             <h3>Price: ${priceForOption[this.state.option]}</h3>
-            <PaypalButton id="paypal-button" amount={this.state.option} />
+            <PaypalButton
+              id="paypal-button"
+              amount={priceForOption[this.state.option]}
+            />
           </>
         )}
       </div>
