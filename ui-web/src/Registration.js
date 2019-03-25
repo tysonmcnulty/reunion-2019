@@ -1,7 +1,7 @@
 import { RadioGroup, Radio } from "react-radio-group";
 import React from "react";
 import PaypalButton from "./PaypalButton";
-import "./RegistrationForm.css";
+import "./Registration.css";
 
 const kebabify = text => {
   return text
@@ -16,7 +16,7 @@ const priceForOption = {
   couple: "225.00"
 };
 
-class RegistrationForm extends React.Component {
+class Registration extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -32,7 +32,7 @@ class RegistrationForm extends React.Component {
     </div>
   );
 
-  renderAttendeeInformation = () => {
+  renderForm = () => {
     const Field = this.renderField;
 
     switch (this.state.option) {
@@ -100,7 +100,7 @@ class RegistrationForm extends React.Component {
 
   render() {
     const Options = this.renderOptions;
-    const AttendeeInformation = this.renderAttendeeInformation;
+    const Form = this.renderForm;
     const option = this.state.option;
     const price = priceForOption[option];
 
@@ -110,9 +110,13 @@ class RegistrationForm extends React.Component {
         <Options />
         {option && (
           <>
-            <AttendeeInformation />
+            <Form />
             <h3>Price: ${price}</h3>
-            <PaypalButton id="paypal-button" amount={price} />
+            <PaypalButton
+              id="paypal-button"
+              amount={price}
+              onSuccess={this.props.onSuccess}
+            />
           </>
         )}
       </div>
@@ -120,4 +124,4 @@ class RegistrationForm extends React.Component {
   }
 }
 
-export default RegistrationForm;
+export default Registration;

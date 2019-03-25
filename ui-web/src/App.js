@@ -1,15 +1,26 @@
 import React, { Component } from "react";
-import RegistrationForm from "./RegistrationForm";
+import Registration from "./Registration";
 import "./App.css";
-import "./RegistrationForm.css";
 
 class App extends Component {
   state = {
-    registering: false
+    registering: false,
+    registered: false
   };
 
   handleRegisterNow = () => {
-    this.setState(prevState => ({ registering: !prevState.registering }));
+    this.setState(prevState => ({
+      registering: !prevState.registering,
+      registered: false
+    }));
+  };
+
+  handleSuccess = response => {
+    this.setState({
+      registering: false,
+      registered: true,
+      response
+    });
   };
 
   render() {
@@ -24,7 +35,17 @@ class App extends Component {
             REGISTER NOW
           </button>
         </div>
-        {this.state.registering && <RegistrationForm />}
+        {this.state.registering && (
+          <Registration onSuccess={this.handleSuccess} />
+        )}
+        {this.state.registered && (
+          <>
+            <h3>Thank you!</h3>
+            <div>
+              Your payment has been successfully processed. You're all set!
+            </div>
+          </>
+        )}
       </div>
     );
   }

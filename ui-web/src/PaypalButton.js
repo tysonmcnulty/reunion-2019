@@ -15,7 +15,7 @@ class PaypalButton extends Component {
       credentials: "same-origin"
     }).then(response => response.json());
 
-    const { amount } = this.props;
+    const { amount, onSuccess } = this.props;
 
     paypal.Button.render(
       {
@@ -49,7 +49,7 @@ class PaypalButton extends Component {
             })
           }).then(response => response.json());
 
-          this.setState({ response });
+          onSuccess(response);
         }
       },
       this.props.id
@@ -63,7 +63,8 @@ class PaypalButton extends Component {
 
 PaypalButton.propTypes = {
   id: PropTypes.string.isRequired,
-  amount: PropTypes.string.isRequired
+  amount: PropTypes.string.isRequired,
+  onSuccess: PropTypes.func.isRequired
 };
 
 export default PaypalButton;
