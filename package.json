@@ -4,9 +4,8 @@
   "description": "Class Reunion Website",
   "main": "index.js",
   "scripts": {
-    "archive": "scripts/archive.sh",
     "build": "npm --prefix ui-web run build",
-    "deploy": "npm run archive && scripts/deploy.sh",
+    "deploy": "scripts/test.sh && scripts/archive.sh && scripts/deploy.sh",
     "preinstall": "npm --prefix ui-web install",
     "test": "codeceptjs run --steps",
     "start": "node index.js"
