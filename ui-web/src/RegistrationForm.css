@@ -12,6 +12,9 @@
 
 .option-group {
   display: flex;
+  flex-direction: column;
+  width: max-content;
+  margin: auto;
 }
 
 .option-group > * {
@@ -34,17 +37,6 @@
 }
 
 @media all and (max-width: 600px) {
-  .option-group {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .option-group > * {
-    flex: 1 1;
-  }
-}
-
-@media all and (max-width: 400px) {
   .form-field {
     flex-direction: column;
   }
