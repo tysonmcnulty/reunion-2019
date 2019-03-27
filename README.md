@@ -12,6 +12,8 @@ Install:
 
 ```bash
 npm install
+cp .env.example .env
+// edit .env and replace with client token
 ```
 
 Run tests:

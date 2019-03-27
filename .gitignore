@@ -9,3 +9,6 @@ reunion-2019*.tgz
 
 # Testing
 /acceptance/output
+
+# IDE
+.idea
