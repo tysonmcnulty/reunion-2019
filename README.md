@@ -1,10 +1,6 @@
 # reunion-2019
 
-Class Reunion 2019 website
-
-## Resources
-
-- [Drive folder](https://drive.google.com/drive/folders/1GGVjZBn4iEOvKVapqiFAjhysDuLX5_xt)
+BTW '04 Class Reunion 2019 website
 
 ## Development
 
@@ -12,8 +8,8 @@ Install:
 
 ```bash
 npm install
-cp .env.example .env
-// edit .env and replace with client token
+cp ui-web/.env.example ui-web/.env
+// edit ui-web/.env and replace with client id and secret
 ```
 
 Run tests:

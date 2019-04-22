@@ -22,12 +22,9 @@
   "homepage": "https://github.com/tysonmcnulty/reunion-2019#readme",
   "devDependencies": {
     "codeceptjs": "^2.0.6",
-    "puppeteer": "^1.12.2"
+    "puppeteer": "^1.14.0-next"
   },
   "dependencies": {
-    "braintree": "^2.15.0",
-    "cors": "^2.8.5",
-    "dotenv": "^6.2.0",
     "express": "^4.16.4"
   }
 }

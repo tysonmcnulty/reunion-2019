@@ -1,6 +1,6 @@
 import { RadioGroup, Radio } from "react-radio-group";
 import React from "react";
-import PaypalButton from "./PaypalButton";
+import PaypalSmartButton from "./PaypalSmartButton";
 import "./Registration.css";
 
 const kebabify = text => {
@@ -112,7 +112,7 @@ class Registration extends React.Component {
           <>
             <Form />
             <h3>Price: ${price}</h3>
-            <PaypalButton
+            <PaypalSmartButton
               id="paypal-button"
               amount={price}
               onSuccess={this.props.onSuccess}

@@ -1,5 +1,3 @@
-require("dotenv").config();
-
 const server = require("./app/server");
 const { static } = require("express");
 const path = require("path");
