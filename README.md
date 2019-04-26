@@ -36,3 +36,13 @@ npm start
 ```
 
 The dev server runs on port 3000 and proxies backend calls to `http://localhost:2004`.
+
+## Deployment
+
+Build, test, and push to PCF (requires `cf` CLI):
+
+```bash
+npm run deploy            # deploy using ./manifest.yml
+npm run deploy -- prod    # deploy using ./manifest.yml
+npm run deploy -- test    # deploy using ./manifest-test.yml
+```

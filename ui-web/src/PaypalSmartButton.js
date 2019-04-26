@@ -10,9 +10,11 @@ class PaypalSmartButton extends Component {
         createOrder(data, actions) {
           // Set up the transaction
           return actions.order.create({
+            intent: "CAPTURE",
             purchase_units: [
               {
                 amount: {
+                  currency_code: "USD",
                   value: amount
                 }
               }
@@ -21,6 +23,9 @@ class PaypalSmartButton extends Component {
         },
         onApprove(data, actions) {
           return actions.order.capture().then(onSuccess);
+        },
+        onError(err) {
+          console.error("!!!!!!!!", err);
         }
       })
       .render(`#${id}`);
