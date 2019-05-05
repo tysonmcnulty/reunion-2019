@@ -36,6 +36,10 @@
   text-align: right;
 }
 
+.left-space {
+  padding-left: 0.25em;
+}
+
 @media all and (max-width: 600px) {
   .form-field {
     flex-direction: column;

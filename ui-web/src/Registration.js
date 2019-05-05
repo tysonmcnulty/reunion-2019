@@ -10,17 +10,27 @@ const kebabify = text => {
     .join("-");
 };
 
-const priceForOption = {
-  individual: "125.00",
-  pair: "225.00",
-  couple: "225.00"
+const detailsForOption = {
+  individual: {
+    price: "129.04",
+    explanation: "($125.00 registration fee + $4.04 PayPal processing fee)"
+  },
+  pair: {
+    price: "232.03",
+    explanation: "($225.00 registration fee + $7.03 PayPal processing fee)"
+  },
+  couple: {
+    price: "232.03",
+    explanation: "($225.00 registration fee + $7.03 PayPal processing fee)"
+  },
+  none: {}
 };
 
 class Registration extends React.Component {
   constructor() {
     super();
     this.state = {
-      option: ""
+      option: "none"
     };
   }
 
@@ -84,17 +94,21 @@ class Registration extends React.Component {
       <div className="option-group">
         <label className="option">
           <Radio value="individual" />
-          Just me
+          <span>Just me</span>
+          <span className="left-space">($125.00*)</span>
         </label>
         <label className="option">
           <Radio value="pair" />
-          Me and another alum
+          <span>Me and another alum</span>
+          <span className="left-space">($225.00*)</span>
         </label>
         <label className="option">
           <Radio value="couple" />
-          Me and a plus-one (non-alum)
+          <span>Me and a non-alum</span>
+          <span className="left-space">($225.00*)</span>
         </label>
       </div>
+      <p>*Price before payment processing</p>
     </RadioGroup>
   );
 
@@ -102,16 +116,17 @@ class Registration extends React.Component {
     const Options = this.renderOptions;
     const Form = this.renderForm;
     const option = this.state.option;
-    const price = priceForOption[option];
+    const { price, explanation } = detailsForOption[option];
 
     return (
       <div className="form" id="registration-form">
         <h3>Who's registering?</h3>
         <Options />
-        {option && (
+        {price && (
           <>
             <Form />
-            <h3>Price: ${price}</h3>
+            <h2>Price: ${price}</h2>
+            <p>{explanation}</p>
             <PaypalSmartButton
               id="paypal-button"
               amount={price}
