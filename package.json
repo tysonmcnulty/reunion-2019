@@ -25,6 +25,8 @@
     "puppeteer": "^1.14.0-next"
   },
   "dependencies": {
-    "express": "^4.16.4"
+    "cfenv": "^1.2.2",
+    "express": "^4.16.4",
+    "mongodb": "^3.2.4"
   }
 }
