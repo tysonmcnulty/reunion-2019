@@ -41,7 +41,7 @@ Scenario("Registering as a couple", I => {
   I.click("Me and a non-alum");
 
   I.waitForText("My Information");
-  within("#attendee-1", () => {
+  within("#attendee-info", () => {
     I.fillField("First Name", "Tyson");
     I.fillField("Last Name", "McNulty");
     I.fillField("Email", "cool-email@example.com");
@@ -49,7 +49,7 @@ Scenario("Registering as a couple", I => {
   });
 
   I.waitForText("My Guest's Information");
-  within("#attendee-2", () => {
+  within("#guest-info", () => {
     I.fillField("First Name", "Tyson");
     I.fillField("Last Name", "McNulty");
     I.fillField("Email", "cool-email@example.com");

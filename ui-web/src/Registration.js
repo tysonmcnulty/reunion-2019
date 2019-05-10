@@ -34,28 +34,84 @@ class Registration extends React.Component {
     };
   }
 
-  renderField = ({ labelText }) => (
+  renderField = ({ labelText, value, onChange }) => (
     <div className="form-field">
       <label htmlFor={kebabify(labelText)}>{labelText}</label>
-      <input id={kebabify(labelText)} />
+      <input onChange={onChange} value={value} id={kebabify(labelText)} />
       <span />
     </div>
   );
 
-  renderForm = () => {
+  renderAttendeeInfo = () => {
     const Field = this.renderField;
+    const { registration, changeHandlerFor } = this.props;
+
+    return (
+      <div id="attendee-info">
+        <Field
+          value={registration.attendee.firstName}
+          onChange={changeHandlerFor("attendee")("firstName")}
+          labelText="First Name"
+        />
+        <Field
+          value={registration.attendee.lastName}
+          onChange={changeHandlerFor("attendee")("lastName")}
+          labelText="Last Name"
+        />
+        <Field
+          value={registration.attendee.email}
+          onChange={changeHandlerFor("attendee")("email")}
+          labelText="Email"
+        />
+        <Field
+          value={registration.attendee.tShirtSize}
+          onChange={changeHandlerFor("attendee")("tShirtSize")}
+          labelText="T-Shirt Size"
+        />
+      </div>
+    );
+  };
+
+  renderGuestInfo = () => {
+    const Field = this.renderField;
+    const { registration, changeHandlerFor } = this.props;
+
+    return (
+      <div id="guest-info">
+        <Field
+          value={registration.guest.firstName}
+          onChange={changeHandlerFor("guest")("firstName")}
+          labelText="First Name"
+        />
+        <Field
+          value={registration.guest.lastName}
+          onChange={changeHandlerFor("guest")("lastName")}
+          labelText="Last Name"
+        />
+        <Field
+          value={registration.guest.email}
+          onChange={changeHandlerFor("guest")("email")}
+          labelText="Email"
+        />
+        <Field
+          value={registration.guest.tShirtSize}
+          onChange={changeHandlerFor("guest")("tShirtSize")}
+          labelText="T-Shirt Size"
+        />
+      </div>
+    );
+  };
+
+  renderForm = () => {
+    const AttendeeInfo = this.renderAttendeeInfo;
+    const GuestInfo = this.renderGuestInfo;
 
     switch (this.state.option) {
       case "individual":
         return (
           <>
             <h3>My Information</h3>
-            <div>
-              <Field labelText="First Name" />
-              <Field labelText="Last Name" />
-              <Field labelText="Email" />
-              <Field labelText="T-Shirt Size" />
-            </div>
+            <AttendeeInfo />
           </>
         );
       case "pair":
@@ -63,19 +119,9 @@ class Registration extends React.Component {
         return (
           <>
             <h3>My Information</h3>
-            <div id="attendee-1">
-              <Field labelText="First Name" />
-              <Field labelText="Last Name" />
-              <Field labelText="Email" />
-              <Field labelText="T-Shirt Size" />
-            </div>
+            <AttendeeInfo />
             <h3>My Guest's Information</h3>
-            <div id="attendee-2">
-              <Field labelText="First Name" />
-              <Field labelText="Last Name" />
-              <Field labelText="Email" />
-              <Field labelText="T-Shirt Size" />
-            </div>
+            <GuestInfo />
           </>
         );
       default:

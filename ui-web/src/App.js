@@ -5,7 +5,26 @@ import "./App.css";
 class App extends Component {
   state = {
     registering: false,
-    registered: false
+    registered: false,
+    registration: {
+      attendee: {},
+      guest: {}
+    }
+  };
+
+  changeHandlerFor = person => detail => event => {
+    const { value } = event.target;
+
+    this.setState(prevState => ({
+      ...prevState,
+      registration: {
+        ...prevState.registration,
+        [person]: {
+          ...prevState.registration[person],
+          [detail]: value
+        }
+      }
+    }));
   };
 
   handleRegisterNow = () => {
@@ -16,6 +35,13 @@ class App extends Component {
   };
 
   handleSuccess = response => {
+    fetch({
+      method: "POST",
+      url: "/api/registration",
+      body: this.state,
+      json: true
+    });
+
     this.setState({
       registering: false,
       registered: true,
@@ -36,7 +62,11 @@ class App extends Component {
           </button>
         </div>
         {this.state.registering && (
-          <Registration onSuccess={this.handleSuccess} />
+          <Registration
+            registration={this.state.registration}
+            changeHandlerFor={this.changeHandlerFor}
+            onSuccess={this.handleSuccess}
+          />
         )}
         {this.state.registered && (
           <>
