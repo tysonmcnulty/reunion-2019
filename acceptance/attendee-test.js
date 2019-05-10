@@ -53,7 +53,7 @@ Scenario("Registering as a couple", I => {
     I.fillField("First Name", "Tyson");
     I.fillField("Last Name", "McNulty");
     I.fillField("Email", "cool-email@example.com");
-    I.fillField("T-Shirt Size", "extra awesome");
+    I.dontSee("T-Shirt Size");
   });
 
   I.see("$225.00");

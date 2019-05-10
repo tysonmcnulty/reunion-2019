@@ -93,11 +93,13 @@ class Registration extends React.Component {
           onChange={changeHandlerFor("guest")("email")}
           labelText="Email"
         />
-        <Field
-          value={registration.guest.tShirtSize}
-          onChange={changeHandlerFor("guest")("tShirtSize")}
-          labelText="T-Shirt Size"
-        />
+        {this.state.option === "pair" && (
+          <Field
+            value={registration.guest.tShirtSize}
+            onChange={changeHandlerFor("guest")("tShirtSize")}
+            labelText="T-Shirt Size"
+          />
+        )}
       </div>
     );
   };
