@@ -58,7 +58,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>Class of 2004 15th Reunion</h1>
+          <h1>BTW Class of 2004 15th Reunion</h1>
           <h2>October 4-6, 2019</h2>
         </header>
         <div>
