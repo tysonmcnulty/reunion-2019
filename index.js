@@ -1,4 +1,4 @@
-const server = require("./app/server");
+const server = require("./app/src/server");
 const { static } = require("express");
 const path = require("path");
 

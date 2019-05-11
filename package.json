@@ -7,8 +7,9 @@
     "build": "npm --prefix ui-web run build",
     "deploy": "scripts/test.sh && scripts/archive.sh && scripts/deploy.sh",
     "preinstall": "npm --prefix ui-web install",
+    "start": "node index.js",
     "test": "codeceptjs run --steps",
-    "start": "node index.js"
+    "unit": "jasmine --config=app/spec/support/jasmine.json"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
   "homepage": "https://github.com/tysonmcnulty/reunion-2019#readme",
   "devDependencies": {
     "codeceptjs": "^2.0.6",
+    "jasmine": "^3.4.0",
     "puppeteer": "^1.14.0-next"
   },
   "dependencies": {

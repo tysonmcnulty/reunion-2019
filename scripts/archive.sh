@@ -4,6 +4,6 @@ zip -r package/archive.zip \
   package.json \
   package-lock.json \
   index.js \
-  app \
+  app/src \
   .env \
   ui-web/build

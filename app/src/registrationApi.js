@@ -1,10 +1,8 @@
-const express = require("express");
+const { Router } = require("express");
 const cfenv = require("cfenv");
 const { MongoClient } = require("mongodb");
 
-const app = express();
-
-app.use(express.json());
+const registrationApi = Router();
 
 const saveIfDbConnected = registration => {
   const appEnv = cfenv.getAppEnv();
@@ -14,7 +12,7 @@ const saveIfDbConnected = registration => {
   }
 
   const mongoCreds = appEnv.getServiceCreds("btw-mongo");
-  if (!mongoCreds.uri) {
+  if (!mongoCreds) {
     console.log("Mongo URI not found; aborting save");
     return;
   }
@@ -42,10 +40,9 @@ const saveIfDbConnected = registration => {
   });
 };
 
-app.post("/api/registration", function(req, res) {
+registrationApi.post("/", function saveNew(req, res) {
   const registration = req.body;
 
-  console.log("WE GOT YOU");
   console.log(registration);
 
   saveIfDbConnected(registration);
@@ -53,4 +50,4 @@ app.post("/api/registration", function(req, res) {
   res.status(202).send();
 });
 
-module.exports = app;
+module.exports = registrationApi;
