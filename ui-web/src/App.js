@@ -35,11 +35,9 @@ class App extends Component {
   };
 
   handleSuccess = response => {
-    fetch({
+    fetch("/api/registration", {
       method: "POST",
-      url: "/api/registration",
-      body: this.state,
-      json: true
+      body: this.state
     });
 
     this.setState({
