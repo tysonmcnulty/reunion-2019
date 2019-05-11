@@ -2,6 +2,7 @@ html {
   background-image: url("https://resources.finalsite.net/images/f_auto,q_auto/v1529464532/tulsaschoolsorg/olx8az0nitfn6vfkys7c/Hero_BTW_Exterior_1440x1020.jpg");
   background-attachment: fixed;
   background-position-x: center;
+  background-repeat: no-repeat;
   background-size: cover;
   background-blend-mode: overlay;
   background-color: #1a1d22;
