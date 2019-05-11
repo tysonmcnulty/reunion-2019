@@ -1,19 +1,22 @@
 #!/usr/bin/env bash
 mkdir -p package
 mkdir -p package/archive
+rm package/archive.zip
 rm -rf package/archive/*
-
-mkdir -p package/archive/app/src
-mkdir -p package/archive/ui-web/build
 
 cp -R package.json \
   package-lock.json \
   index.js \
   package/archive
 
-cp -R app/src package/archive/app/src
-cp -R ui-web/build package/archive/ui-web/build
+mkdir -p package/archive/app
+mkdir -p package/archive/ui-web
+
+cp -R app/src package/archive/app
+cp -R ui-web/build package/archive/ui-web
 
 npm install --production --prefix package/archive
 
-zip -rqm package/archive.zip package/archive/*
+pushd package/archive
+zip -rq ../archive.zip ./*
+popd
