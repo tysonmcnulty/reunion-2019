@@ -66,6 +66,7 @@ class App extends Component {
             onSuccess={this.handleSuccess}
           />
         )}
+        {!this.state.registered && <div className="spacer" />}
         {this.state.registered && (
           <>
             <h3>Thank you!</h3>

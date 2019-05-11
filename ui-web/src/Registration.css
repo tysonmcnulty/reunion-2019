@@ -21,6 +21,10 @@
   flex: 1;
 }
 
+.option-group input[type="radio"] {
+  margin: 5px;
+}
+
 .option {
   display: flex;
   align-items: baseline;
