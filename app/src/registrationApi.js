@@ -43,7 +43,7 @@ const saveIfDbConnected = registration => {
 registrationApi.post("/", function saveNew(req, res) {
   const registration = req.body;
 
-  console.log(registration);
+  console.log("Received registration:", JSON.stringify(registration));
 
   saveIfDbConnected(registration);
 

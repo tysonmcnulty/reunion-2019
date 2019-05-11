@@ -2,6 +2,14 @@ import React, { Component } from "react";
 import Registration from "./Registration";
 import "./App.css";
 
+function postObj(url, obj) {
+  return fetch(url, {
+    method: "POST",
+    body: JSON.stringify(obj),
+    headers: { "Content-Type": "application/json" }
+  });
+}
+
 class App extends Component {
   state = {
     registering: false,
@@ -34,16 +42,15 @@ class App extends Component {
     }));
   };
 
-  handleSuccess = response => {
-    fetch("/api/registration", {
-      method: "POST",
-      body: this.state
+  handleSuccess = transactionResult => {
+    postObj("/api/registration", {
+      ...this.state.registration,
+      transactionResult
     });
 
     this.setState({
       registering: false,
-      registered: true,
-      response
+      registered: true
     });
   };
 
