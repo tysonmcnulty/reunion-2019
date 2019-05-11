@@ -10,6 +10,10 @@ Scenario("Registering alone", I => {
   I.see("October 4-6, 2019");
   I.dontSee("#registration-form");
 
+  within("#questions", () => {
+    I.see("Facebook group");
+  });
+
   I.click("REGISTER NOW");
 
   I.waitForElement("#registration-form");

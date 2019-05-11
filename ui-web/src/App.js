@@ -66,7 +66,20 @@ class App extends Component {
             onSuccess={this.handleSuccess}
           />
         )}
-        {!this.state.registered && <div className="spacer" />}
+        {!this.state.registered && (
+          <p className="spacer" id="questions">
+            Questions about schedule, activities, pricing, or who's going? Join
+            the conversation in the{" "}
+            <a
+              href="https://www.facebook.com/groups/509758222373004/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Class of 2004 Facebook group
+            </a>
+            .
+          </p>
+        )}
         {this.state.registered && (
           <>
             <h3>Thank you!</h3>

@@ -31,3 +31,13 @@
 .spacer {
   height: 20vh;
 }
+
+a {
+  text-decoration: none;
+  color: rgb(204, 109, 0);
+}
+
+a:hover {
+  color: rgb(255, 165, 0);
+  text-decoration: underline;
+}
