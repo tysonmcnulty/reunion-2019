@@ -29,6 +29,7 @@
   "dependencies": {
     "cfenv": "^1.2.2",
     "express": "^4.16.4",
-    "mongodb": "^3.2.4"
+    "mongodb": "^3.2.4",
+    "morgan": "^1.9.1"
   }
 }
