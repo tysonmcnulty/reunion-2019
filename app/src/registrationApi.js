@@ -47,7 +47,7 @@ registrationApi.post("/", function saveNew(req, res) {
 
   saveIfDbConnected(registration);
 
-  res.status(202).send();
+  res.status(201).send();
 });
 
 module.exports = registrationApi;
