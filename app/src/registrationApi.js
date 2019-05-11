@@ -11,7 +11,7 @@ const saveIfDbConnected = registration => {
     return;
   }
 
-  const mongoCreds = appEnv.getServiceCreds("btw-mongo");
+  const mongoCreds = appEnv.getServiceCreds(/^btw-mongo/);
   if (!mongoCreds) {
     console.log("Mongo URI not found; aborting save");
     return;

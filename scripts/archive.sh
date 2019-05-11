@@ -5,5 +5,5 @@ zip -r package/archive.zip \
   package-lock.json \
   index.js \
   app/src \
-  .env \
+  node_modules \
   ui-web/build
