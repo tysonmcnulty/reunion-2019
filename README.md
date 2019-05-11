@@ -9,7 +9,7 @@ Install:
 ```bash
 npm install
 cp ui-web/.env.example ui-web/.env
-// edit ui-web/.env and replace with client id and secret
+# edit ui-web/.env and replace with valid values
 ```
 
 Run tests:
@@ -39,10 +39,10 @@ The dev server runs on port 3000 and proxies backend calls to `http://localhost:
 
 ## Deployment
 
-Build, test, and push to PCF (requires `cf` CLI):
+Build, test, and deploy to PCF (requires `cf` CLI):
 
 ```bash
-npm run deploy            # deploy using ./manifest.yml
-npm run deploy -- prod    # deploy using ./manifest.yml
-npm run deploy -- test    # deploy using ./manifest-test.yml
+npm run ship            # deploy using ./manifest.yml
+npm run ship -- prod    # deploy using ./manifest.yml
+npm run ship -- test    # deploy using ./manifest-test.yml
 ```
