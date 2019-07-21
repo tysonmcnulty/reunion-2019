@@ -19,7 +19,6 @@ case $DEPLOYMENT_ENV in
     ;;
 esac
 
-cf push \
-  -p package/archive.zip \
-  -f cf/manifest.yml \
-  --vars-file cf/vars/${DEPLOYMENT_ENV}.yml
+cf zero-downtime-push \
+  -f cf/manifest_${DEPLOYMENT_ENV}.yml \
+  -p package/archive.zip

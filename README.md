@@ -4,7 +4,14 @@ BTW '04 Class Reunion 2019 website
 
 ## Development
 
-Install:
+### Prerequisites
+
+- [Node](https://nodejs.org/en/) version 10.15.x
+- [direnv](https://direnv.net/)
+- The [CF CLI](https://github.com/cloudfoundry/cli)
+- The [cf-puppeteer](https://github.com/HappyTobi/cf-puppeteer) CF plugin
+
+### Install
 
 ```bash
 cp environments/example.envrc environments/test.envrc
@@ -15,7 +22,7 @@ direnv allow
 btw install
 ```
 
-Run tests:
+### Run tests
 
 ```bash
 npm run unit   # runs backend tests.
@@ -23,7 +30,9 @@ npm test       # runs web tests. assumes app is running locally
 btw test       # runs all tests. starts and stops a test app
 ```
 
-Start the app locally:
+### Run the app
+
+Server-only:
 
 ```bash
 npm --prefix ui-web run build

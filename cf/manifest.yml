@@ -1,7 +1,0 @@
----
-applications:
-  - name: ((app_name))
-    routes:
-      - route: ((app_name)).apps.pcfone.io
-    services:
-      - ((db_name))
