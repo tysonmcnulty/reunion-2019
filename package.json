@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "build": "npm --prefix ui-web run build",
-    "ship": "scripts/test.sh && scripts/archive.sh && scripts/deploy.sh",
     "preinstall": "npm --prefix ui-web install",
     "start": "node index.js",
     "test": "codeceptjs run --steps",

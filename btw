@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -e
+
+function list_all_commands() {
+  ls -1 scripts | sed -e 's/\.sh$//' | xargs | sed -e 's/ /|/g'
+}
+
+if [ -z $1 ]; then
+  echo "Usage: btw [$(list_all_commands)]"
+  exit 1
+fi
+
+scripts/${1}.sh

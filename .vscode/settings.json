@@ -3,5 +3,8 @@
   "editor.fontSize": 16,
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
-  "editor.minimap.enabled": false
+  "editor.minimap.enabled": false,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true
 }

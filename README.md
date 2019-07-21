@@ -7,16 +7,17 @@ BTW '04 Class Reunion 2019 website
 Install:
 
 ```bash
+cp .envrc.example .envrc
+# edit .envrc and replace with valid values
+direnv allow
 npm install
-cp ui-web/.env.example ui-web/.env
-# edit ui-web/.env and replace with valid values
 ```
 
 Run tests:
 
 ```bash
-npm test          # assumes app is running locally
-scripts/test.sh   # starts and stops a test app
+npm test   # assumes app is running locally
+btw test   # starts and stops a test app
 ```
 
 Start the app locally:
@@ -31,8 +32,7 @@ The server runs on port 2004 by default (configurable via `process.env.PORT`).
 Start the UI development server (or "dev server") locally:
 
 ```bash
-cd ui-web
-npm start
+npm --prefix ui-web start
 ```
 
 The dev server runs on port 3000 and proxies backend calls to `http://localhost:2004`.
@@ -42,7 +42,6 @@ The dev server runs on port 3000 and proxies backend calls to `http://localhost:
 Build, test, and deploy to PCF (requires `cf` CLI):
 
 ```bash
-npm run ship            # deploy using ./manifest.yml
-npm run ship -- prod    # deploy using ./manifest.yml
-npm run ship -- test    # deploy using ./manifest-test.yml
+btw ship prod    # deploy using ./manifest.yml
+btw ship test    # deploy using ./manifest-test.yml
 ```

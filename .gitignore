@@ -5,7 +5,7 @@ node_modules
 /package
 reunion-2019*.tgz
 /*.zip
-.env
+.envrc
 
 # Testing
 /acceptance/output

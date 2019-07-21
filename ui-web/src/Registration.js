@@ -177,7 +177,7 @@ class Registration extends React.Component {
             <p>{explanation}</p>
             <PaypalSmartButton
               id="paypal-button"
-              amount={price}
+              amount={process.env.REACT_APP_PRICE_OVERRIDE || price}
               onSuccess={this.props.onSuccess}
             />
           </>

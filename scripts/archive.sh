@@ -15,7 +15,7 @@ mkdir -p package/archive/ui-web
 cp -R app/src package/archive/app
 cp -R ui-web/build package/archive/ui-web
 
-npm install --production --prefix package/archive
+npm install --production --quiet --prefix package/archive
 
 pushd package/archive
 zip -rq ../archive.zip ./*

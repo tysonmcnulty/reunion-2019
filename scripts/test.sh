@@ -2,6 +2,7 @@
 set -eu
 
 export PORT=9999
+export REACT_APP_PRICE_OVERRIDE=${REACT_APP_PRICE_OVERRIDE:-}
 
 echo "Building app..."
 npm run build &>/dev/null
