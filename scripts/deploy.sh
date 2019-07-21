@@ -2,8 +2,7 @@
 
 set -eu
 
-export DEPLOYMENT_ENV=${1:-prod}
-export REUNION_APP_ENV=${REUNION_APP_ENV:-unknown}
+export DEPLOYMENT_ENV=${1:-${REUNION_APP_ENV}}
 
 scripts/env.sh check
 
@@ -21,8 +20,5 @@ case $DEPLOYMENT_ENV in
     exit 1
     ;;
 esac
-
-echo "force fail"
-exit 1
 
 cf push -p package/archive.zip -f $CF_MANIFEST

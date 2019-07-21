@@ -5,13 +5,12 @@ echo -n "Running unit tests..."
 npm run unit &>/dev/null
 echo "done"
 
+scripts/build.sh
+
 export PORT=9999
-
-scripts/build.sh &>/dev/null
-
-APP_PID=""
 npm start &>/dev/null &
 
+APP_PID=""
 echo -n "Waiting for app to start..."
 while [[ -z $(lsof -ti :${PORT}) ]]; do
   sleep 1

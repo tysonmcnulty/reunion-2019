@@ -3,8 +3,8 @@
 set -eu
 
 function env_check() {
-  echo "Requested deployment environment: '${DEPLOYMENT_ENV}'"
-  echo "Application built for environment: '${REUNION_APP_ENV}'"
+  echo "Application build environment: '${REUNION_APP_ENV}'"
+  echo "Requested deployment environment: '${DEPLOYMENT_ENV:=${REUNION_APP_ENV}}'"
 
   if [ $REUNION_APP_ENV != $DEPLOYMENT_ENV ]; then
     echo "Environment mismatch! To fix, change your credentials (in .envrc)."
