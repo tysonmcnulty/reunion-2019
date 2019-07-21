@@ -1,7 +1,0 @@
----
-applications:
-  - name: btwclassof2004-test
-    routes:
-      - route: btwclassof2004-test.apps.pcfone.io
-    services:
-      - btw-mongo-test

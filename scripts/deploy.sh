@@ -8,11 +8,9 @@ scripts/env.sh check
 
 case $DEPLOYMENT_ENV in
   test)
-    check_environment
     export CF_MANIFEST="./manifest-test.yml"
     ;;
   prod)
-    check_environment
     export CF_MANIFEST="./manifest.yml"
     ;;
   *)
@@ -21,4 +19,7 @@ case $DEPLOYMENT_ENV in
     ;;
 esac
 
-cf push -p package/archive.zip -f $CF_MANIFEST
+cf push \
+  -p package/archive.zip \
+  -f cf/manifest.yml \
+  --vars-file cf/vars/${DEPLOYMENT_ENV}.yml
