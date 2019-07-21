@@ -2,13 +2,21 @@
 
 set -e
 
-function list_all_commands() {
-  ls -1 scripts | sed -e 's/\.sh$//' | xargs | sed -e 's/ /|/g'
-}
+COMMANDS=$(ls -1 scripts | sed -e 's/\.sh$//' | xargs)
 
-if [ -z $1 ]; then
-  echo "Usage: btw [$(list_all_commands)]"
-  exit 1
-fi
-
-scripts/${1}.sh
+case ${COMMANDS} in
+  *${1:-unset}*)
+    CMD=$1
+    shift
+    {
+      scripts/${CMD}.sh $@ && \
+      echo "🐝 Command '$CMD' successful."
+    } || {
+      echo "🚨 Command '$CMD' unsuccessful."
+      exit 1
+    }
+    ;;
+  *)
+    echo "Usage: btw [$(echo ${COMMANDS} | sed -e 's/ /|/g')]"
+    exit 1
+esac

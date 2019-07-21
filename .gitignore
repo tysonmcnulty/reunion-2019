@@ -1,11 +1,13 @@
-# Project
-node_modules
-
-# Application
+# Packaging
 /package
+node_modules
 reunion-2019*.tgz
 /*.zip
-.envrc
+
+# Environments
+*.envrc*
+!environments/example.envrc
+
 
 # Testing
 /acceptance/output

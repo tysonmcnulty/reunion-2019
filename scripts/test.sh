@@ -1,27 +1,32 @@
 #!/usr/bin/env bash
 set -eu
 
-export PORT=9999
-export REACT_APP_PRICE_OVERRIDE=${REACT_APP_PRICE_OVERRIDE:-}
+echo -n "Running unit tests..."
+npm run unit &>/dev/null
+echo "done"
 
-echo "Building app..."
-npm run build &>/dev/null
+export PORT=9999
+
+scripts/build.sh &>/dev/null
 
 APP_PID=""
 npm start &>/dev/null &
 
+echo -n "Waiting for app to start..."
 while [[ -z $(lsof -ti :${PORT}) ]]; do
-  echo "Waiting for app to start..."
   sleep 1
+  echo -n "."
 done
+echo "done"
 
 APP_PID=$(lsof -ti :${PORT})
-echo "App PID: ${APP_PID}"
+echo "- App PID: ${APP_PID}"
 echo "Running tests..."
 
 set +e
-TEST_PORT=${PORT} npm -s test
+TEST_PORT=${PORT} npm --silent test
 set -e
 
-echo "Stopping app..."
+echo -n "Stopping app..."
 kill $APP_PID
+echo "done"

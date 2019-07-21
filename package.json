@@ -4,8 +4,6 @@
   "description": "Class Reunion Website",
   "main": "index.js",
   "scripts": {
-    "build": "npm --prefix ui-web run build",
-    "preinstall": "npm --prefix ui-web install",
     "start": "node index.js",
     "test": "codeceptjs run --steps",
     "unit": "jasmine --config=app/spec/support/jasmine.json"

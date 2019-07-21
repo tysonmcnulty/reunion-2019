@@ -1,17 +1,11 @@
 #!/usr/bin/env bash
 
-set -e
+set -eu
 
-DEPLOYMENT_ENV=${1:-prod}
-REUNION_APP_ENV=${REUNION_APP_ENV:-unknown}
+export DEPLOYMENT_ENV=${1:-prod}
+export REUNION_APP_ENV=${REUNION_APP_ENV:-unknown}
 
-function check_environment() {
-  if [ $REUNION_APP_ENV != $DEPLOYMENT_ENV ]; then
-    echo "${DEPLOYMENT_ENV} deployment requested, but REUNION_APP_ENV is ${REUNION_APP_ENV}. Aborting deployment."
-    echo "Check your credentials (in .envrc)."
-    exit 1
-  fi
-}
+scripts/env.sh check
 
 case $DEPLOYMENT_ENV in
   test)
@@ -23,9 +17,12 @@ case $DEPLOYMENT_ENV in
     export CF_MANIFEST="./manifest.yml"
     ;;
   *)
-    echo "🐝 Usage: scripts/deploy.sh [test|prod]"
+    echo "Usage: scripts/deploy.sh [test|prod]"
     exit 1
     ;;
 esac
+
+echo "force fail"
+exit 1
 
 cf push -p package/archive.zip -f $CF_MANIFEST

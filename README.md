@@ -7,27 +7,30 @@ BTW '04 Class Reunion 2019 website
 Install:
 
 ```bash
-cp .envrc.example .envrc
-# edit .envrc and replace with valid values
+cp environments/example.envrc environments/test.envrc
+cp environments/example.envrc environments/prod.envrc
+# edit test.envrc and prod.envrc and replace with valid values
+scripts/env.sh set test
 direnv allow
-npm install
+btw install
 ```
 
 Run tests:
 
 ```bash
-npm test   # assumes app is running locally
-btw test   # starts and stops a test app
+npm run unit   # runs backend tests.
+npm test       # runs web tests. assumes app is running locally
+btw test       # runs all tests. starts and stops a test app
 ```
 
 Start the app locally:
 
 ```bash
-npm run build
+npm --prefix ui-web run build
 npm start
 ```
 
-The server runs on port 2004 by default (configurable via `process.env.PORT`).
+The server runs on port 2004 by default (configurable via `PORT`).
 
 Start the UI development server (or "dev server") locally:
 

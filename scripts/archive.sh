@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
-mkdir -p package
+set -e
+
+if [ ! -f ui-web/build/index.html ]; then
+  echo "No web UI found. Run 'build' command first."
+  exit 1
+fi
+
 mkdir -p package/archive
-rm package/archive.zip
-rm -rf package/archive/*
+rm -rf package/archive.zip package/archive/*
 
 cp -R package.json \
   package-lock.json \
