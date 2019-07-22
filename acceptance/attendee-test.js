@@ -2,66 +2,67 @@ Feature("Reunion attendee registers for the reunion");
 
 Before(I => {
   I.amOnPage("/");
+  I.seeHomePageContents();
 });
 
 Scenario("Registering alone", I => {
-  I.see("Class of 2004");
-  I.see("15th Reunion");
-  I.see("October 4-6, 2019");
-  I.dontSee("#registration-form");
-
-  within("#questions", () => {
-    I.see("Facebook group");
-  });
-
   I.click("REGISTER NOW");
-
   I.waitForElement("#registration-form");
+
+  I.see("Are you coming for the full weekend?");
+  I.click("Yes, sign me up for everything!");
+
   I.see("Who's registering?");
   I.click("Just me");
 
-  I.waitForText("My Information");
-  I.fillField("First Name", "Tyson");
-  I.fillField("Last Name", "McNulty");
-  I.fillField("Email", "cool-email@example.com");
-  I.fillField("T-Shirt Size", "extra awesome");
+  I.registerAsAttendee("Tyson");
 
-  I.see("$125.00");
-  I.see("$4.04");
-  I.see("$129.04");
-  I.waitForElement("#paypal-button");
+  I.seeSinglesPaymentFlow();
 });
 
 Scenario("Registering as a couple", I => {
-  I.see("Class of 2004");
-  I.see("15th Reunion");
-  I.see("October 4-6, 2019");
-  I.dontSee("#registration-form");
-
   I.click("REGISTER NOW");
-
   I.waitForElement("#registration-form");
+
+  I.see("Are you coming for the full weekend?");
+  I.click("Yes, sign me up for everything!");
+
   I.see("Who's registering?");
   I.click("Me and a non-alum");
 
-  I.waitForText("My Information");
-  within("#attendee-info", () => {
-    I.fillField("First Name", "Tyson");
-    I.fillField("Last Name", "McNulty");
-    I.fillField("Email", "cool-email@example.com");
-    I.fillField("T-Shirt Size", "extra awesome");
-  });
+  I.registerAsAttendee("Tyson");
+  I.registerAsGuest("Shannon");
 
-  I.waitForText("My Guest's Information");
-  within("#guest-info", () => {
-    I.fillField("First Name", "Tyson");
-    I.fillField("Last Name", "McNulty");
-    I.fillField("Email", "cool-email@example.com");
-    I.dontSee("T-Shirt Size");
-  });
+  I.seeCouplesPaymentFlow();
+});
 
-  I.see("$225.00");
-  I.see("$7.03");
-  I.see("$232.03");
-  I.waitForElement("#paypal-button");
+Scenario("Registering alone, dinner only", I => {
+  I.click("REGISTER NOW");
+  I.waitForElement("#registration-form");
+
+  I.see("Are you coming for the full weekend?");
+  I.click("No, just dinner on Saturday night.");
+
+  I.see("Who's registering?");
+  I.click("Just me");
+
+  I.registerAsAttendee("Tyson");
+
+  I.seeSinglesDinnerOnlyPaymentFlow();
+});
+
+Scenario("Registering as a couple, dinner only", I => {
+  I.click("REGISTER NOW");
+  I.waitForElement("#registration-form");
+
+  I.see("Are you coming for the full weekend?");
+  I.click("No, just dinner on Saturday night.");
+
+  I.see("Who's registering?");
+  I.click("Me and a non-alum");
+
+  I.registerAsAttendee("Tyson");
+  I.registerAsGuest("Shannon");
+
+  I.seeCouplesDinnerOnlyPaymentFlow();
 });

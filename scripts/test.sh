@@ -24,8 +24,11 @@ echo "Running tests..."
 
 set +e
 TEST_PORT=${PORT} npm --silent test
+TEST_STATUS=$?
 set -e
 
 echo -n "Stopping app..."
 kill $APP_PID
 echo "done"
+
+exit $TEST_STATUS

@@ -1,4 +1,5 @@
 import { RadioGroup, Radio } from "react-radio-group";
+import { pricingDetails, pricingExplanation } from "./pricing";
 import React from "react";
 import PaypalSmartButton from "./PaypalSmartButton";
 import "./Registration.css";
@@ -10,27 +11,12 @@ const kebabify = text => {
     .join("-");
 };
 
-const detailsForOption = {
-  individual: {
-    price: "129.04",
-    explanation: "($125.00 registration fee + $4.04 PayPal processing fee)"
-  },
-  pair: {
-    price: "232.03",
-    explanation: "($225.00 registration fee + $7.03 PayPal processing fee)"
-  },
-  couple: {
-    price: "232.03",
-    explanation: "($225.00 registration fee + $7.03 PayPal processing fee)"
-  },
-  none: {}
-};
-
 class Registration extends React.Component {
   constructor() {
     super();
     this.state = {
-      option: "none"
+      ticketOption: "",
+      attendeeOption: ""
     };
   }
 
@@ -93,7 +79,7 @@ class Registration extends React.Component {
           onChange={changeHandlerFor("guest")("email")}
           labelText="Email"
         />
-        {this.state.option === "pair" && (
+        {this.state.attendeeOption === "pair" && (
           <Field
             value={registration.guest.tShirtSize}
             onChange={changeHandlerFor("guest")("tShirtSize")}
@@ -108,7 +94,7 @@ class Registration extends React.Component {
     const AttendeeInfo = this.renderAttendeeInfo;
     const GuestInfo = this.renderGuestInfo;
 
-    switch (this.state.option) {
+    switch (this.state.attendeeOption) {
       case "individual":
         return (
           <>
@@ -131,29 +117,77 @@ class Registration extends React.Component {
     }
   };
 
-  renderOptions = () => (
+  renderTicketOptions = () => (
     <RadioGroup
-      id="registration-options"
-      selectedValue={this.state.option}
+      id="ticket-options"
+      selectedValue={this.state.ticketOption}
       onChange={value => {
-        this.setState({ option: value });
+        this.setState({ ticketOption: value });
+      }}
+    >
+      <div className="option-group">
+        <label className="option">
+          <Radio value="full" />
+          <span>Yes, sign me up for everything!</span>
+        </label>
+        <label className="option">
+          <Radio value="dinner" />
+          <span>No, just dinner on Saturday night.</span>
+        </label>
+      </div>
+    </RadioGroup>
+  );
+
+  renderAttendeeOptions = () => (
+    <RadioGroup
+      id="attendee-options"
+      selectedValue={this.state.attendeeOption}
+      onChange={value => {
+        this.setState({ attendeeOption: value });
       }}
     >
       <div className="option-group">
         <label className="option">
           <Radio value="individual" />
           <span>Just me</span>
-          <span className="left-space">($125.00*)</span>
+          <span className="left-space">
+            ($
+            {
+              pricingDetails({
+                ...this.state,
+                attendeeOption: "individual"
+              })["base"]
+            }
+            *)
+          </span>
         </label>
         <label className="option">
           <Radio value="pair" />
           <span>Me and another alum</span>
-          <span className="left-space">($225.00*)</span>
+          <span className="left-space">
+            ($
+            {
+              pricingDetails({
+                ...this.state,
+                attendeeOption: "pair"
+              })["base"]
+            }
+            *)
+          </span>
         </label>
         <label className="option">
           <Radio value="couple" />
           <span>Me and a non-alum</span>
-          <span className="left-space">($225.00*)</span>
+          <span className="left-space">
+            ($
+            {
+              pricingDetails({
+                ...this.state,
+                attendeeOption: "couple"
+              })["base"]
+            }
+            *)
+          </span>
         </label>
       </div>
       <p>*Price before payment processing</p>
@@ -161,23 +195,29 @@ class Registration extends React.Component {
   );
 
   render() {
-    const Options = this.renderOptions;
+    const AttendeeOptions = this.renderAttendeeOptions;
+    const TicketOptions = this.renderTicketOptions;
     const Form = this.renderForm;
-    const option = this.state.option;
-    const { price, explanation } = detailsForOption[option];
+    const details = pricingDetails(this.state);
 
     return (
       <div className="form" id="registration-form">
-        <h3>Who's registering?</h3>
-        <Options />
-        {price && (
+        <h3>Are you coming for the full weekend?</h3>
+        <TicketOptions />
+        {this.state.ticketOption && (
+          <>
+            <h3>Who's registering?</h3>
+            <AttendeeOptions />
+          </>
+        )}
+        {details.total && (
           <>
             <Form />
-            <h2>Price: ${price}</h2>
-            <p>{explanation}</p>
+            <h2>Price: ${details.total}</h2>
+            <p>({pricingExplanation(details)})</p>
             <PaypalSmartButton
               id="paypal-button"
-              amount={process.env.REACT_APP_PRICE_OVERRIDE || price}
+              amount={process.env.REACT_APP_PRICE_OVERRIDE || details.total}
               onSuccess={this.props.onSuccess}
             />
           </>
