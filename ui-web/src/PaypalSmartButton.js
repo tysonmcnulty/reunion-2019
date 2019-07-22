@@ -32,7 +32,7 @@ class PaypalSmartButton extends Component {
   }
 
   render() {
-    return <div id={this.props.id} />;
+    return <div className="width-limited" id={this.props.id} />;
   }
 }
 
