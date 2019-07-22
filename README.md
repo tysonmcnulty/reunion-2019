@@ -49,11 +49,18 @@ npm --prefix ui-web start
 
 The dev server runs on port 3000 and proxies backend calls to `http://localhost:2004`.
 
-## Deployment
+## Deploy
 
-Build, test, and deploy to PCF (requires `cf` CLI):
+1. Set your environment to `test` or `prod`.
 
-```bash
-btw ship prod    # deploy using ./manifest.yml
-btw ship test    # deploy using ./manifest-test.yml
-```
+   ```bash
+   btw env set test    # or prod
+   ```
+
+   If you have changed your environment recently, you will be prompted to run `direnv allow`.
+
+1. Build, test, and deploy to PCF:
+
+   ```bash
+   btw ship
+   ```
