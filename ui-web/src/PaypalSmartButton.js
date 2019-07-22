@@ -2,8 +2,13 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 class PaypalSmartButton extends Component {
+  getCurrentAmount = () => {
+    return this.props.amount;
+  };
+
   async componentDidMount() {
-    const { id, amount, onSuccess } = this.props;
+    const { id, onSuccess } = this.props;
+    const getCurrentAmount = this.getCurrentAmount;
 
     window.paypal
       .Buttons({
@@ -15,7 +20,7 @@ class PaypalSmartButton extends Component {
               {
                 amount: {
                   currency_code: "USD",
-                  value: amount
+                  value: getCurrentAmount()
                 }
               }
             ]

@@ -22,6 +22,6 @@ cp -R ui-web/build package/archive/ui-web
 
 npm install --production --quiet --prefix package/archive
 
-pushd package/archive
+pushd package/archive &>/dev/null
 zip -rq ../archive.zip ./*
-popd
+popd &>/dev/null
